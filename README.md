@@ -20,10 +20,8 @@ $ ./blink_pc
 ## Compilando
 ```bash
 $ make PLATFORM=arduino
-$ cd build
-$ make 
 ```
 ## Gravando 
 ```bash
-$ make upload
+$ make PLATFORM=arduino upload
 ```
