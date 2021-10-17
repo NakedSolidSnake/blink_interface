@@ -1,9 +1,19 @@
-all: create_dir copy_files
+PROJECT_NAME = blink.elf
+BINARY_NAME  = blink.hex
 
-create_dir:
-	mkdir -p build 
+CLOCK = 16000000
+DEVICE	= atmega328p
+PORT   ?= /dev/ttyACM*
+BAUD   ?= 115200
+PROGRAMMER = arduino
 
-copy_files:
-	cp business/* build/
-	cp platform/arduino/* build/
-	cp config/setup/Makefile build/
+CFLAGS  = -Wall -Os -DF_CPU=${CLOCK} -mmcu=${DEVICE}
+
+TOOLCHAIN_PREFIX = avr-
+
+CC              := $(TOOLCHAIN_PREFIX)gcc
+AR              := $(TOOLCHAIN_PREFIX)ar
+OBJCPY          := $(TOOLCHAIN_PREFIX)objcopy
+OBJDUMP         := $(TOOLCHAIN_PREFIX)objdump
+STRIP           := $(TOOLCHAIN_PREFIX)strip
+NM              := $(TOOLCHAIN_PREFIX)nm
